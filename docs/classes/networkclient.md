@@ -1,11 +1,11 @@
-[@iota-pico/pal-browser](../README.md) > [BrowserNetworkClient](../classes/browsernetworkclient.md)
+[@iota-pico/pal-browser](../README.md) > [NetworkClient](../classes/networkclient.md)
 
 
 
-# Class: BrowserNetworkClient
+# Class: NetworkClient
 
 
-Default implementation of a node client.
+Implementation of a node client for use in the browser.
 *__interface__*: 
 
 
@@ -17,12 +17,12 @@ Default implementation of a node client.
 
 ### Constructors
 
-* [constructor](browsernetworkclient.md#constructor)
+* [constructor](networkclient.md#constructor)
 
 
 ### Methods
 
-* [postJson](browsernetworkclient.md#postjson)
+* [postJson](networkclient.md#postjson)
 
 
 
@@ -31,14 +31,14 @@ Default implementation of a node client.
 <a id="constructor"></a>
 
 
-### ⊕ **new BrowserNetworkClient**(networkEndPoint: *`INetworkEndPoint`*): [BrowserNetworkClient](browsernetworkclient.md)
+### ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*): [NetworkClient](networkclient.md)
 
 
-*Defined in [network/browserNetworkClient.ts:10](https://github.com/iotaeco/iota-pico-pal-browser/blob/24df3e4/src/network/browserNetworkClient.ts#L10)*
+*Defined in network/networkClient.ts:10*
 
 
 
-Create an instance of BrowserNetworkClient.
+Create an instance of NetworkClient.
 
 
 **Parameters:**
@@ -51,7 +51,7 @@ Create an instance of BrowserNetworkClient.
 
 
 
-**Returns:** [BrowserNetworkClient](browsernetworkclient.md)
+**Returns:** [NetworkClient](networkclient.md)
 
 ---
 
@@ -65,7 +65,7 @@ Create an instance of BrowserNetworkClient.
 
 
 
-*Defined in [network/browserNetworkClient.ts:31](https://github.com/iotaeco/iota-pico-pal-browser/blob/24df3e4/src/network/browserNetworkClient.ts#L31)*
+*Defined in network/networkClient.ts:31*
 
 
 

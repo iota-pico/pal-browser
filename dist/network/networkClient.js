@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const coreError_1 = require("@iota-pico/core/dist/error/coreError");
 /**
- * Default implementation of a node client.
+ * Implementation of a node client for use in the browser.
  * @interface
  */
-class BrowserNetworkClient {
+class NetworkClient {
     /**
-     * Create an instance of BrowserNetworkClient.
+     * Create an instance of NetworkClient.
      * @param networkEndPoint The endpoint to use for the client.
      */
     constructor(networkEndPoint) {
@@ -70,4 +70,4 @@ class BrowserNetworkClient {
         });
     }
 }
-exports.BrowserNetworkClient = BrowserNetworkClient;
+exports.NetworkClient = NetworkClient;

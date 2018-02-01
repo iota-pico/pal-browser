@@ -7,7 +7,7 @@
 
 ### Classes
 
-* [BrowserNetworkClient](classes/browsernetworkclient.md)
+* [NetworkClient](classes/networkclient.md)
 
 
 

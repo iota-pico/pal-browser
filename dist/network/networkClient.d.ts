@@ -1,13 +1,13 @@
 import { INetworkClient } from "@iota-pico/core/dist/interfaces/INetworkClient";
 import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoint";
 /**
- * Default implementation of a node client.
+ * Implementation of a node client for use in the browser.
  * @interface
  */
-export declare class BrowserNetworkClient implements INetworkClient {
+export declare class NetworkClient implements INetworkClient {
     private readonly _networkEndPoint;
     /**
-     * Create an instance of BrowserNetworkClient.
+     * Create an instance of NetworkClient.
      * @param networkEndPoint The endpoint to use for the client.
      */
     constructor(networkEndPoint: INetworkEndPoint);
