@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.2
+
+* Remove IError references
+
 ## v0.5.1
 
 * PAL network client name unification
