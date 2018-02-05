@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.5.3
+
+
 ## v0.5.2
 
 * Remove IError references
