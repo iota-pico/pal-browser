@@ -7,6 +7,7 @@ import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoi
  * @interface
  */
 export class NetworkClient implements INetworkClient {
+    /* @internal */
     private readonly _networkEndPoint: INetworkEndPoint;
 
     /**

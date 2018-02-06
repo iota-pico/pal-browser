@@ -5,7 +5,6 @@ import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoi
  * @interface
  */
 export declare class NetworkClient implements INetworkClient {
-    private readonly _networkEndPoint;
     /**
      * Create an instance of NetworkClient.
      * @param networkEndPoint The endpoint to use for the client.
