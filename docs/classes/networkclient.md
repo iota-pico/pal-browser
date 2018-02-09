@@ -34,7 +34,7 @@ Implementation of a node client for use in the browser.
 ### ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*): [NetworkClient](networkclient.md)
 
 
-*Defined in [network/networkClient.ts:11](https://github.com/iotaeco/iota-pico-pal-browser/blob/fd62de7/src/network/networkClient.ts#L11)*
+*Defined in [network/networkClient.ts:11](https://github.com/iotaeco/iota-pico-pal-browser/blob/538353b/src/network/networkClient.ts#L11)*
 
 
 
@@ -65,7 +65,7 @@ Create an instance of NetworkClient.
 
 
 
-*Defined in [network/networkClient.ts:32](https://github.com/iotaeco/iota-pico-pal-browser/blob/fd62de7/src/network/networkClient.ts#L32)*
+*Defined in [network/networkClient.ts:32](https://github.com/iotaeco/iota-pico-pal-browser/blob/538353b/src/network/networkClient.ts#L32)*
 
 
 
