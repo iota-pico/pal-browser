@@ -17,6 +17,45 @@ class NetworkClient {
         this._networkEndPoint = networkEndPoint;
     }
     /**
+     * Get data asynchronously.
+     * @param data The data to send.
+     * @param additionalHeaders Extra headers to send with the request.
+     * @returns Promise which resolves to the object returned or rejects with error.
+     */
+    async get(additionalHeaders) {
+        return this.doRequest("GET", undefined, additionalHeaders);
+    }
+    /**
+     * Post data asynchronously.
+     * @param data The data to send.
+     * @param additionalHeaders Extra headers to send with the request.
+     * @returns Promise which resolves to the object returned or rejects with error.
+     */
+    async post(data, additionalHeaders) {
+        return this.doRequest("POST", data, additionalHeaders);
+    }
+    /**
+     * Get data asynchronously.
+     * @typeparam U The generic type for the returned object.
+     * @param additionalHeaders Extra headers to send with the request.
+     * @returns Promise which resolves to the object returned or rejects with error.
+     */
+    async getJson(additionalHeaders) {
+        return this.doRequest("GET", undefined, additionalHeaders)
+            .then((responseData) => {
+            try {
+                const response = JSON.parse(responseData);
+                return response;
+            }
+            catch (err) {
+                throw (new coreError_1.CoreError("Failed POST request, unable to parse response", {
+                    endPoint: this._networkEndPoint.getUri(),
+                    response: responseData
+                }));
+            }
+        });
+    }
+    /**
      * Post data asynchronously.
      * @typeparam T The generic type for the object to send.
      * @typeparam U The generic type for the returned object.
@@ -25,11 +64,28 @@ class NetworkClient {
      * @returns Promise which resolves to the object returned or rejects with error.
      */
     async postJson(data, additionalHeaders) {
+        const headers = additionalHeaders || {};
+        headers["Content-Type"] = "application/json";
+        return this.doRequest("POST", JSON.stringify(data), additionalHeaders)
+            .then((responseData) => {
+            try {
+                const response = JSON.parse(responseData);
+                return response;
+            }
+            catch (err) {
+                throw (new coreError_1.CoreError("Failed POST request, unable to parse response", {
+                    endPoint: this._networkEndPoint.getUri(),
+                    response: responseData
+                }));
+            }
+        });
+    }
+    /* @internal */
+    async doRequest(method, data, additionalHeaders) {
         return new Promise((resolve, reject) => {
             const headers = additionalHeaders || {};
-            headers["Content-Type"] = "application/json";
             const req = new XMLHttpRequest();
-            req.open("POST", this._networkEndPoint.getUri(), true);
+            req.open(method, this._networkEndPoint.getUri(), true);
             for (const key in headers) {
                 req.setRequestHeader(key, headers[key]);
             }
@@ -37,20 +93,10 @@ class NetworkClient {
                 if (req.readyState === XMLHttpRequest.DONE) {
                     const responseData = req.responseText;
                     if (req.status === 200) {
-                        try {
-                            const response = JSON.parse(responseData);
-                            resolve(response);
-                        }
-                        catch (err) {
-                            reject(new coreError_1.CoreError("Unsuccessful POST request, unable to parse response", {
-                                endPoint: this._networkEndPoint.getUri(),
-                                httpStatusCode: req.status,
-                                response: responseData
-                            }));
-                        }
+                        resolve(responseData);
                     }
                     else {
-                        reject(new coreError_1.CoreError("Unsuccessful POST request", {
+                        reject(new coreError_1.CoreError(`Failed ${method} request`, {
                             endPoint: this._networkEndPoint.getUri(),
                             httpStatusCode: req.status,
                             response: responseData
@@ -59,10 +105,10 @@ class NetworkClient {
                 }
             };
             try {
-                req.send(JSON.stringify(data));
+                req.send(data);
             }
             catch (err) {
-                reject(new coreError_1.CoreError("Unsuccessful POST request", {
+                reject(new coreError_1.CoreError(`Failed ${method} request`, {
                     endPoint: this._networkEndPoint.getUri(),
                     httpError: err
                 }));

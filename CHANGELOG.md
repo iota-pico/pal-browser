@@ -1,7 +1,8 @@
 # Changelog
 
-## v0.6.0
+## v0.6.1
 
+* Explicit initialization of PAL added.
 
 ## v0.5.2
 
