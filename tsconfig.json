@@ -2,23 +2,23 @@
     "compilerOptions": {
         "target": "es2017",
         "lib": [
-            "es2015",
+            "es2016",
             "dom"
         ],
         "outDir": "dist",
         "module": "commonjs",
         "declaration": true,
         "moduleResolution": "node",
-        "types": [
-        ],
         "noImplicitAny": true,
         "noImplicitThis": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
         "strictNullChecks": false,
+        "types": [],
         "esModuleInterop": true,
         "stripInternal": true,
-        "experimentalDecorators": true
+        "inlineSourceMap": true,
+        "noImplicitUseStrict": true
     },
     "include": [
         "src/**/*"

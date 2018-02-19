@@ -1,4 +1,5 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iotaeco/iota-pico-pal-browser/master/LICENSE) [![Build Status](https://travis-ci.org/iotaeco/iota-pico-pal-browser.svg?branch=master)](https://travis-ci.org/iotaeco/iota-pico-pal-browser) [![NSP Status](https://nodesecurity.io/orgs/iotaeco/projects/ea25227b-41f2-4a43-a927-3eb45be10013/badge)](https://nodesecurity.io/orgs/iotaeco/projects/ea25227b-41f2-4a43-a927-3eb45be10013)
+[![Coveralls](https://img.shields.io/coveralls/iotaeco/iota-pico-pal-browser.svg)](https://coveralls.io/github/iotaeco/iota-pico-pal-browser)
 
 # IOTA Pico Framework Platform Abstraction Layer for Browser
 
