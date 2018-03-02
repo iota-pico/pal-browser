@@ -1,4 +1,5 @@
 import { CoreError } from "@iota-pico/core/dist/error/coreError";
+import { ObjectHelper } from "@iota-pico/core/dist/helpers/objectHelper";
 import { INetworkClient } from "@iota-pico/core/dist/interfaces/INetworkClient";
 import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoint";
 
@@ -15,7 +16,7 @@ export class NetworkClient implements INetworkClient {
      * @param networkEndPoint The endpoint to use for the client.
      */
     constructor(networkEndPoint: INetworkEndPoint) {
-        if (networkEndPoint === undefined || networkEndPoint === null) {
+        if (ObjectHelper.isEmpty(networkEndPoint)) {
             throw new CoreError("The networkEndPoint must be defined");
         }
         this._networkEndPoint = networkEndPoint;
