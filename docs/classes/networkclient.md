@@ -34,10 +34,10 @@ Implementation of a node client for use in the browser.
 <a id="constructor"></a>
 
 
-### ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*): [NetworkClient](networkclient.md)
+### ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*, timeoutMs?: *`number`*): [NetworkClient](networkclient.md)
 
 
-*Defined in [network/networkClient.ts:12](https://github.com/iotaeco/iota-pico-pal-browser/blob/fee799b/src/network/networkClient.ts#L12)*
+*Defined in [network/networkClient.ts:15](https://github.com/iotaeco/iota-pico-pal-browser/blob/6999f41/src/network/networkClient.ts#L15)*
 
 
 
@@ -46,9 +46,10 @@ Create an instance of NetworkClient.
 
 **Parameters:**
 
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| networkEndPoint | `INetworkEndPoint`   |  The endpoint to use for the client. |
+| Param | Type | Default value | Description |
+| ------ | ------ | ------ | ------ |
+| networkEndPoint | `INetworkEndPoint`  | - |   The endpoint to use for the client. |
+| timeoutMs | `number`  | 0 |   The timeout in ms before aborting. |
 
 
 
@@ -68,7 +69,7 @@ Create an instance of NetworkClient.
 
 
 
-*Defined in [network/networkClient.ts:31](https://github.com/iotaeco/iota-pico-pal-browser/blob/fee799b/src/network/networkClient.ts#L31)*
+*Defined in [network/networkClient.ts:39](https://github.com/iotaeco/iota-pico-pal-browser/blob/6999f41/src/network/networkClient.ts#L39)*
 
 
 
@@ -103,7 +104,7 @@ ___
 
 
 
-*Defined in [network/networkClient.ts:51](https://github.com/iotaeco/iota-pico-pal-browser/blob/fee799b/src/network/networkClient.ts#L51)*
+*Defined in [network/networkClient.ts:59](https://github.com/iotaeco/iota-pico-pal-browser/blob/6999f41/src/network/networkClient.ts#L59)*
 
 
 
@@ -144,7 +145,7 @@ ___
 
 
 
-*Defined in [network/networkClient.ts:41](https://github.com/iotaeco/iota-pico-pal-browser/blob/fee799b/src/network/networkClient.ts#L41)*
+*Defined in [network/networkClient.ts:49](https://github.com/iotaeco/iota-pico-pal-browser/blob/6999f41/src/network/networkClient.ts#L49)*
 
 
 
@@ -180,7 +181,7 @@ ___
 
 
 
-*Defined in [network/networkClient.ts:74](https://github.com/iotaeco/iota-pico-pal-browser/blob/fee799b/src/network/networkClient.ts#L74)*
+*Defined in [network/networkClient.ts:82](https://github.com/iotaeco/iota-pico-pal-browser/blob/6999f41/src/network/networkClient.ts#L82)*
 
 
 

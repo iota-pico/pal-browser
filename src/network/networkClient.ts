@@ -1,4 +1,5 @@
 import { CoreError } from "@iota-pico/core/dist/error/coreError";
+import { NumberHelper } from "@iota-pico/core/dist/helpers/numberHelper";
 import { ObjectHelper } from "@iota-pico/core/dist/helpers/objectHelper";
 import { INetworkClient } from "@iota-pico/core/dist/interfaces/INetworkClient";
 import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoint";
@@ -10,16 +11,23 @@ import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoi
 export class NetworkClient implements INetworkClient {
     /* @internal */
     private readonly _networkEndPoint: INetworkEndPoint;
+    /* @internal */
+    private readonly _timeoutMs: number;
 
     /**
      * Create an instance of NetworkClient.
      * @param networkEndPoint The endpoint to use for the client.
+     * @param timeoutMs The timeout in ms before aborting.
      */
-    constructor(networkEndPoint: INetworkEndPoint) {
+    constructor(networkEndPoint: INetworkEndPoint, timeoutMs: number = 0) {
         if (ObjectHelper.isEmpty(networkEndPoint)) {
             throw new CoreError("The networkEndPoint must be defined");
         }
+        if (!NumberHelper.isInteger(timeoutMs) || timeoutMs < 0) {
+            throw new CoreError("The timeoutMs must be >= 0");
+        }
         this._networkEndPoint = networkEndPoint;
+        this._timeoutMs = timeoutMs;
     }
 
     /**
@@ -55,7 +63,7 @@ export class NetworkClient implements INetworkClient {
                     const response = JSON.parse(responseData);
                     return <U>response;
                 } catch (err) {
-                    throw(new CoreError("Failed POST request, unable to parse response", {
+                    throw(new CoreError("Failed GET request, unable to parse response", {
                         endPoint: this._networkEndPoint.getUri(),
                         response: responseData
                     }));
@@ -75,7 +83,7 @@ export class NetworkClient implements INetworkClient {
         const headers = additionalHeaders || {};
         headers["Content-Type"] = "application/json";
 
-        return this.doRequest("POST", JSON.stringify(data), additionalHeaders)
+        return this.doRequest("POST", JSON.stringify(data), headers)
             .then((responseData) => {
                 try {
                     const response = JSON.parse(responseData);
@@ -95,23 +103,30 @@ export class NetworkClient implements INetworkClient {
             const headers = additionalHeaders || {};
 
             const req = new XMLHttpRequest();
+            if (this._timeoutMs > 0) {
+                req.timeout = this._timeoutMs;
+            }
             req.open(method, this._networkEndPoint.getUri(), true);
             for (const key in headers) {
                 req.setRequestHeader(key, headers[key]);
             }
 
-            req.onreadystatechange = () => {
-                if (req.readyState === XMLHttpRequest.DONE) {
-                    const responseData = req.responseText;
-                    if (req.status === 200) {
-                        resolve(responseData);
-                    } else {
-                        reject(new CoreError(`Failed ${method} request`, {
-                            endPoint: this._networkEndPoint.getUri(),
-                            httpStatusCode: req.status,
-                            response: responseData
-                        }));
-                    }
+            req.ontimeout = () => {
+                reject(new CoreError(`Failed ${method} request, timed out`, {
+                    endPoint: this._networkEndPoint.getUri()
+                }));
+            };
+
+            req.onload = () => {
+                const responseData = req.responseText;
+                if (req.status === 200) {
+                    resolve(responseData);
+                } else {
+                    reject(new CoreError(`Failed ${method} request`, {
+                        endPoint: this._networkEndPoint.getUri(),
+                        httpStatusCode: req.status,
+                        response: responseData
+                    }));
                 }
             };
 

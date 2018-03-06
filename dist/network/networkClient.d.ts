@@ -8,8 +8,9 @@ export declare class NetworkClient implements INetworkClient {
     /**
      * Create an instance of NetworkClient.
      * @param networkEndPoint The endpoint to use for the client.
+     * @param timeoutMs The timeout in ms before aborting.
      */
-    constructor(networkEndPoint: INetworkEndPoint);
+    constructor(networkEndPoint: INetworkEndPoint, timeoutMs?: number);
     /**
      * Get data asynchronously.
      * @param data The data to send.
