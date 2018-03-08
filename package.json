@@ -2,8 +2,8 @@
     "name": "@iota-pico/pal-browser",
     "version": "0.7.0",
     "description": "IOTA Pico Framework Platform Abstraction Layer for Browser",
-    "main": "dist/index.js",
     "typings": "dist/index.d.ts",
+    "main": "dist/index.js",
     "keywords": [
         "iota",
         "pico",
@@ -48,6 +48,7 @@
         "@iota-pico/core": "^0.7.0"
     },
     "devDependencies": {
+        "@babel/runtime": "^7.0.0-beta.40",
         "@types/chai": "^4.1.1",
         "@types/mocha": "^2.2.48",
         "@types/sinon": "^4.3.0",

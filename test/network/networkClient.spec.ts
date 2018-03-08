@@ -14,11 +14,14 @@ class FakeXMLHttpRequest {
     public sentData: string;
     public responseText: string;
     public timeout: number;
+    public uri: string;
 
     public onload: () => void;
     public ontimeout: () => void;
+    public onerror: (err: Error) => void;
 
-    public open(): void {
+    public open(method: string, uri: string, async: boolean): void {
+        this.uri = uri;
         this.headers = {};
     }
 
@@ -42,7 +45,7 @@ class FakeXMLHttpRequest {
             },         1);
         }
         if (this.responseText === null) {
-            throw new Error("err!");
+            this.onerror(new Error("err!"));
         } else {
             const interval = setInterval(() => {
                                             this.readyState++;
@@ -78,7 +81,7 @@ describe("NetworkClient", () => {
     });
 
     it("can fail to create with invalid timeout", () => {
-        chai.expect(() => new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), -1)).to.throw(">= 0");
+        chai.expect(() => new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), undefined, -1)).to.throw(">= 0");
     });
 
     describe("get", () => {
@@ -92,7 +95,7 @@ describe("NetworkClient", () => {
         it("can get data with headers", async () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
             xhr.responseText = "foo";
-            const ret = await obj.get({ bar: "123" });
+            const ret = await obj.get(undefined, { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
             chai.expect(xhr.headers.bar).to.be.equal("123");
         });
@@ -101,7 +104,7 @@ describe("NetworkClient", () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
             xhr.responseText = null;
             try {
-                await obj.get({ bar: "123" });
+                await obj.get(undefined, { bar: "123" });
                 chai.assert("should not be here");
             } catch (err) {
                 chai.expect(err.message).to.contain("Failed GET request");
@@ -128,13 +131,22 @@ describe("NetworkClient", () => {
         });
 
         it("can timeout", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), 1);
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), undefined, 1);
             try {
                 await obj.get();
                 chai.assert("should not be here");
             } catch (err) {
                 chai.expect(err.message).to.contain("timed out");
             }
+        });
+
+        it("can get with additional path", async () => {
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", "//pop//", 14265));
+            xhr.responseText = "foo";
+            const ret = await obj.get("////path", { bar: "123" });
+            chai.expect(ret).to.be.equal("foo");
+            chai.expect(xhr.uri).to.be.equal("http://localhost:14265/pop/path");
+            chai.expect(xhr.headers.bar).to.be.equal("123");
         });
     });
 
@@ -149,7 +161,7 @@ describe("NetworkClient", () => {
         it("can post data with headers", async () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
             xhr.responseText = "foo";
-            const ret = await obj.post("blah", { bar: "123" });
+            const ret = await obj.post("blah", undefined, { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
             chai.expect(xhr.headers.bar).to.be.equal("123");
         });
@@ -158,7 +170,7 @@ describe("NetworkClient", () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
             xhr.responseText = null;
             try {
-                await obj.post("blah", { bar: "123" });
+                await obj.post("blah", undefined, { bar: "123" });
                 chai.assert("should not be here");
             } catch (err) {
                 chai.expect(err.message).to.contain("Failed POST request");
@@ -185,7 +197,7 @@ describe("NetworkClient", () => {
         });
 
         it("can timeout", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), 1);
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), undefined, 1);
             try {
                 await obj.post("blah");
                 chai.assert("should not be here");
