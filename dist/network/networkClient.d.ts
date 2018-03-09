@@ -3,7 +3,6 @@ import { INetworkClient } from "@iota-pico/core/dist/interfaces/INetworkClient";
 import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoint";
 /**
  * Implementation of a node client for use in the browser.
- * @interface
  */
 export declare class NetworkClient implements INetworkClient {
     /**

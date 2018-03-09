@@ -25,7 +25,7 @@ Platform abstraction layer for Browser.
 
 
 
-*Defined in [pal.ts:15](https://github.com/iotaeco/iota-pico-pal-browser/blob/d6d734b/src/pal.ts#L15)*
+*Defined in [pal.ts:15](https://github.com/iotaeco/iota-pico-pal-browser/blob/d947024/src/pal.ts#L15)*
 
 
 

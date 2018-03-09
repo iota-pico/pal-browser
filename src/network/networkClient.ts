@@ -9,7 +9,6 @@ import { NullLogger } from "@iota-pico/core/dist/loggers/nullLogger";
 
 /**
  * Implementation of a node client for use in the browser.
- * @interface
  */
 export class NetworkClient implements INetworkClient {
     /* @internal */
@@ -149,10 +148,10 @@ export class NetworkClient implements INetworkClient {
 
             req.onload = () => {
                 if (req.status === 200) {
-                    this._logger.error("<=== Received", { data: req.responseText });
+                    this._logger.info("<=== Received", { data: req.responseText });
                     resolve(req.responseText);
                 } else {
-                    this._logger.error("<=== Received Fail", { code: req.status, data: req.responseText });
+                    this._logger.info("<=== Received Fail", { code: req.status, data: req.responseText });
                     reject(new CoreError(`Failed ${method} request`, {
                         endPoint: uri,
                         errorResponseCode: req.status,
