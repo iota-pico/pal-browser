@@ -35,7 +35,7 @@ Implementation of a node client for use in the browser.
 ### ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*, logger?: *`ILogger`*, timeoutMs?: *`number`*): [NetworkClient](networkclient.md)
 
 
-*Defined in [network/networkClient.ts:19](https://github.com/iotaeco/iota-pico-pal-browser/blob/d947024/src/network/networkClient.ts#L19)*
+*Defined in [network/networkClient.ts:19](https://github.com/iotaeco/iota-pico-pal-browser/blob/84e5248/src/network/networkClient.ts#L19)*
 
 
 
@@ -68,7 +68,7 @@ Create an instance of NetworkClient.
 
 
 
-*Defined in [network/networkClient.ts:47](https://github.com/iotaeco/iota-pico-pal-browser/blob/d947024/src/network/networkClient.ts#L47)*
+*Defined in [network/networkClient.ts:47](https://github.com/iotaeco/iota-pico-pal-browser/blob/84e5248/src/network/networkClient.ts#L47)*
 
 
 
@@ -104,7 +104,7 @@ ___
 
 
 
-*Defined in [network/networkClient.ts:69](https://github.com/iotaeco/iota-pico-pal-browser/blob/d947024/src/network/networkClient.ts#L69)*
+*Defined in [network/networkClient.ts:69](https://github.com/iotaeco/iota-pico-pal-browser/blob/84e5248/src/network/networkClient.ts#L69)*
 
 
 
@@ -146,7 +146,7 @@ ___
 
 
 
-*Defined in [network/networkClient.ts:58](https://github.com/iotaeco/iota-pico-pal-browser/blob/d947024/src/network/networkClient.ts#L58)*
+*Defined in [network/networkClient.ts:58](https://github.com/iotaeco/iota-pico-pal-browser/blob/84e5248/src/network/networkClient.ts#L58)*
 
 
 
@@ -183,7 +183,7 @@ ___
 
 
 
-*Defined in [network/networkClient.ts:93](https://github.com/iotaeco/iota-pico-pal-browser/blob/d947024/src/network/networkClient.ts#L93)*
+*Defined in [network/networkClient.ts:93](https://github.com/iotaeco/iota-pico-pal-browser/blob/84e5248/src/network/networkClient.ts#L93)*
 
 
 
