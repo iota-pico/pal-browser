@@ -15,7 +15,7 @@ describe("PAL", () => {
     describe("intialize", () => {
         it("can be called and register network client", async () => {
             await PAL.initialize();
-            chai.expect(NetworkClientFactory.instance().create("default", new NetworkEndPoint("http", "localhost", undefined, 14265))).to.not.be.equal(undefined);
+            chai.expect(NetworkClientFactory.instance().create("default", new NetworkEndPoint("http", "localhost", 14265))).to.not.be.equal(undefined);
         });
 
         it("can be called twice", async () => {

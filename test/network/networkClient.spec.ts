@@ -72,7 +72,7 @@ describe("NetworkClient", () => {
     });
 
     it("can be created", () => {
-        const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+        const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
         chai.should().exist(obj);
     });
 
@@ -81,19 +81,19 @@ describe("NetworkClient", () => {
     });
 
     it("can fail to create with invalid timeout", () => {
-        chai.expect(() => new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), undefined, -1)).to.throw(">= 0");
+        chai.expect(() => new NetworkClient(new NetworkEndPoint("http", "localhost", 14265), undefined, -1)).to.throw(">= 0");
     });
 
     describe("get", () => {
         it("can get data", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
             const ret = await obj.get();
             chai.expect(ret).to.be.equal("foo");
         });
 
         it("can get data with headers", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
             const ret = await obj.get(undefined, { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
@@ -101,7 +101,7 @@ describe("NetworkClient", () => {
         });
 
         it("can fail during send", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = null;
             try {
                 await obj.get(undefined, { bar: "123" });
@@ -112,7 +112,7 @@ describe("NetworkClient", () => {
         });
 
         it("can take time to return data", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
             xhr.readyState = -2;
             const ret = await obj.get();
@@ -120,7 +120,7 @@ describe("NetworkClient", () => {
         });
 
         it("can fail to with invalid response", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.status = 404;
             try {
                 await obj.get();
@@ -131,7 +131,7 @@ describe("NetworkClient", () => {
         });
 
         it("can timeout", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), undefined, 1);
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265), undefined, 1);
             try {
                 await obj.get();
                 chai.assert("should not be here");
@@ -141,7 +141,7 @@ describe("NetworkClient", () => {
         });
 
         it("can get with additional path", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", "//pop//", 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265, "//pop//"));
             xhr.responseText = "foo";
             const ret = await obj.get("////path", { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
@@ -152,14 +152,14 @@ describe("NetworkClient", () => {
 
     describe("post", () => {
         it("can post data", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
             const ret = await obj.post("blah");
             chai.expect(ret).to.be.equal("foo");
         });
 
         it("can post data with headers", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
             const ret = await obj.post("blah", undefined, { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
@@ -167,7 +167,7 @@ describe("NetworkClient", () => {
         });
 
         it("can fail during send", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = null;
             try {
                 await obj.post("blah", undefined, { bar: "123" });
@@ -178,7 +178,7 @@ describe("NetworkClient", () => {
         });
 
         it("can take time to return data", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
             xhr.readyState = -2;
             const ret = await obj.post("blah");
@@ -186,7 +186,7 @@ describe("NetworkClient", () => {
         });
 
         it("can fail to with invalid response", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.status = 404;
             try {
                 await obj.post("blah");
@@ -197,7 +197,7 @@ describe("NetworkClient", () => {
         });
 
         it("can timeout", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265), undefined, 1);
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265), undefined, 1);
             try {
                 await obj.post("blah");
                 chai.assert("should not be here");
@@ -209,14 +209,14 @@ describe("NetworkClient", () => {
 
     describe("getJson", () => {
         it("can get data", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "{ \"foo\": 123 }";
             const ret = await obj.getJson();
             chai.expect(ret).to.be.deep.equal({ foo: 123 });
         });
 
         it("can fail when JSON.parse fails", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "!";
             try {
                 await obj.getJson();
@@ -229,7 +229,7 @@ describe("NetworkClient", () => {
 
     describe("postJson", () => {
         it("can post data", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "{ \"foo\": 123 }";
             const ret = await obj.postJson({ bar: true });
             chai.expect(ret).to.be.deep.equal({ foo: 123 });
@@ -237,7 +237,7 @@ describe("NetworkClient", () => {
         });
 
         it("can fail when JSON.parse fails", async () => {
-            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", undefined, 14265));
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "!";
             try {
                 await obj.postJson({ bar: true });
