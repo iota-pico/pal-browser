@@ -1,4 +1,4 @@
-import { CoreError } from "@iota-pico/core/dist/error/coreError";
+import { NetworkError } from "@iota-pico/core/dist/error/networkError";
 import { NumberHelper } from "@iota-pico/core/dist/helpers/numberHelper";
 import { ObjectHelper } from "@iota-pico/core/dist/helpers/objectHelper";
 import { StringHelper } from "@iota-pico/core/dist/helpers/stringHelper";
@@ -26,10 +26,10 @@ export class NetworkClient implements INetworkClient {
      */
     constructor(networkEndPoint: INetworkEndPoint, logger?: ILogger, timeoutMs: number = 0) {
         if (ObjectHelper.isEmpty(networkEndPoint)) {
-            throw new CoreError("The networkEndPoint must be defined");
+            throw new NetworkError("The networkEndPoint must be defined");
         }
         if (!NumberHelper.isInteger(timeoutMs) || timeoutMs < 0) {
-            throw new CoreError("The timeoutMs must be >= 0");
+            throw new NetworkError("The timeoutMs must be >= 0");
         }
         this._networkEndPoint = networkEndPoint;
         this._timeoutMs = timeoutMs;
@@ -45,7 +45,10 @@ export class NetworkClient implements INetworkClient {
      * @returns Promise which resolves to the object returned or rejects with error.
      */
     public async get(additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<string> {
-        return this.doRequest("GET", undefined, additionalPath, additionalHeaders);
+        this._logger.info("===> NetworkClient::GET Send");
+        const resp = await this.doRequest("GET", undefined, additionalPath, additionalHeaders);
+        this._logger.info("<=== NetworkClient::GET Received", resp);
+        return resp;
     }
 
     /**
@@ -56,7 +59,10 @@ export class NetworkClient implements INetworkClient {
      * @returns Promise which resolves to the object returned or rejects with error.
      */
     public async post(data: string, additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<string> {
-        return this.doRequest("POST", data, additionalPath, additionalHeaders);
+        this._logger.info("===> NetworkClient::POST Send", data);
+        const resp = await this.doRequest("POST", data, additionalPath, additionalHeaders);
+        this._logger.info("<=== NetworkClient::POST Received", resp);
+        return resp;
     }
 
     /**
@@ -67,13 +73,16 @@ export class NetworkClient implements INetworkClient {
      * @returns Promise which resolves to the object returned or rejects with error.
      */
     public async getJson<U>(additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<U> {
+        this._logger.info("===> NetworkClient::GET Send");
         return this.doRequest("GET", undefined, additionalPath, additionalHeaders)
             .then((responseData) => {
                 try {
                     const response = JSON.parse(responseData);
+                    this._logger.info("===> NetworkClient::GET Received", response);
                     return <U>response;
                 } catch (err) {
-                    throw(new CoreError("Failed GET request, unable to parse response", {
+                    this._logger.info("===> NetworkClient::GET Parse Failed", responseData);
+                    throw(new NetworkError("Failed GET request, unable to parse response", {
                         endPoint: this._networkEndPoint.getUri(),
                         response: responseData
                     }));
@@ -91,6 +100,8 @@ export class NetworkClient implements INetworkClient {
      * @returns Promise which resolves to the object returned or rejects with error.
      */
     public async postJson<T, U>(data: T, additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<U> {
+        this._logger.info("===> NetworkClient::POST Send");
+
         const headers = additionalHeaders || {};
         headers["Content-Type"] = "application/json";
 
@@ -98,9 +109,11 @@ export class NetworkClient implements INetworkClient {
             .then((responseData) => {
                 try {
                     const response = JSON.parse(responseData);
+                    this._logger.info("===> NetworkClient::POST Received", response);
                     return <U>response;
                 } catch (err) {
-                    throw(new CoreError("Failed POST request, unable to parse response", {
+                    this._logger.info("===> NetworkClient::GET Parse Failed", responseData);
+                    throw(new NetworkError("Failed POST request, unable to parse response", {
                         endPoint: this._networkEndPoint.getUri(),
                         response: responseData
                     }));
@@ -127,9 +140,9 @@ export class NetworkClient implements INetworkClient {
             }
 
             req.ontimeout = () => {
-                this._logger.error("<=== Timed Out");
+                this._logger.error("<=== NetworkClient::Timed Out");
 
-                reject(new CoreError(`Failed ${method} request, timed out`, {
+                reject(new NetworkError(`Failed ${method} request, timed out`, {
                     endPoint: uri,
                     errorResponseCode: req.status,
                     errorResponse: req.responseText || req.statusText
@@ -137,9 +150,9 @@ export class NetworkClient implements INetworkClient {
             };
 
             req.onerror = (err) => {
-                this._logger.error("<=== Errored");
+                this._logger.error("<=== NetworkClient::Errored");
 
-                reject(new CoreError(`Failed ${method} request`, {
+                reject(new NetworkError(`Failed ${method} request`, {
                     endPoint: uri,
                     errorResponseCode: req.status,
                     errorResponse: req.responseText || req.statusText
@@ -148,11 +161,10 @@ export class NetworkClient implements INetworkClient {
 
             req.onload = () => {
                 if (req.status === 200) {
-                    this._logger.info("<=== Received", { data: req.responseText });
                     resolve(req.responseText);
                 } else {
-                    this._logger.info("<=== Received Fail", { code: req.status, data: req.responseText });
-                    reject(new CoreError(`Failed ${method} request`, {
+                    this._logger.info("<=== NetworkClient::Received Fail", { code: req.status, data: req.responseText });
+                    reject(new NetworkError(`Failed ${method} request`, {
                         endPoint: uri,
                         errorResponseCode: req.status,
                         errorResponse: req.responseText || req.statusText
@@ -166,7 +178,7 @@ export class NetworkClient implements INetworkClient {
                 req.setRequestHeader(key, headers[key]);
             }
 
-            this._logger.info("===> Send", { data });
+            this._logger.info("===> NetworkClient::Send", { data });
 
             req.send(data);
         });
