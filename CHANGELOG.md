@@ -1,5 +1,7 @@
 # Changelog
 
+* Added RngService implementation
+
 ## v0.9.2
 
 * Added UMD version of library in pkg folder

@@ -9,6 +9,7 @@
 
 * [NetworkClient](classes/networkclient.md)
 * [PAL](classes/pal.md)
+* [RngService](classes/rngservice.md)
 
 
 

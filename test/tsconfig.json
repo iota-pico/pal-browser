@@ -3,7 +3,8 @@
     "compilerOptions": {
         "types": [
             "@types/mocha",
-            "@types/chai"
+            "@types/chai",
+            "@types/node"
         ],
         "declaration": false
     },

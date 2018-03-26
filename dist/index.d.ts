@@ -3,3 +3,4 @@
  */
 export * from "./pal";
 export * from "./network/networkClient";
+export * from "./services/rngService";
