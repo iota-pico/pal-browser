@@ -32,7 +32,7 @@ Implementation of random number generation service.
 ### ⊕ **new RngService**(randomSource?: *`RandomSource`*): [RngService](rngservice.md)
 
 
-*Defined in services/rngService.ts:8*
+*Defined in [services/rngService.ts:8](https://github.com/iotaeco/iota-pico-pal-browser/blob/8fc2a0e/src/services/rngService.ts#L8)*
 
 
 
@@ -63,7 +63,7 @@ Create a new instance of RngService.
 
 
 
-*Defined in services/rngService.ts:22*
+*Defined in [services/rngService.ts:22](https://github.com/iotaeco/iota-pico-pal-browser/blob/8fc2a0e/src/services/rngService.ts#L22)*
 
 
 

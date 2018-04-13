@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.9.3
+
+* Fix Release
 * Added RngService implementation
 * Added PlatformCrypto implementation
 

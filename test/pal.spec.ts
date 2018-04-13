@@ -2,6 +2,7 @@
  * Tests for PAL.
  */
 import { NetworkClientFactory } from "@iota-pico/core/dist/factories/networkClientFactory";
+import { PlatformCryptoFactory } from "@iota-pico/core/dist/factories/platformCryptoFactory";
 import { RngServiceFactory } from "@iota-pico/core/dist/factories/rngServiceFactory";
 import { NetworkEndPoint } from "@iota-pico/core/dist/network/networkEndPoint";
 import * as chai from "chai";

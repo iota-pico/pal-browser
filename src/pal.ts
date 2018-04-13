@@ -1,6 +1,7 @@
 import { NetworkClientFactory } from "@iota-pico/core/dist/factories/networkClientFactory";
 import { PlatformCryptoFactory } from "@iota-pico/core/dist/factories/platformCryptoFactory";
 import { RngServiceFactory } from "@iota-pico/core/dist/factories/rngServiceFactory";
+import { ILogger } from "@iota-pico/core/dist/interfaces/ILogger";
 import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoint";
 import { PlatformCrypto } from "./crypto/platformCrypto";
 import { NetworkClient } from "./network/networkClient";
