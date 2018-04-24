@@ -1,16 +1,17 @@
 import { IRngService } from "@iota-pico/core/dist/interfaces/IRngService";
+import { IRngSource } from "./IRngSource";
 
 /**
  * Implementation of random number generation service.
  */
 export class RngService implements IRngService {
     /* @internal */
-    private readonly _randomSource: RandomSource;
+    private readonly _randomSource: IRngSource;
 
     /**
      * Create a new instance of RngService.
      */
-    constructor(randomSource?: RandomSource) {
+    constructor(randomSource?: IRngSource) {
         this._randomSource = randomSource || window.crypto;
     }
 
@@ -21,6 +22,6 @@ export class RngService implements IRngService {
      */
     public generate(length: number): Uint8Array {
         const arr = new Uint8Array(length);
-        return this._randomSource.getRandomValues(arr);
+        return <Uint8Array>this._randomSource.getRandomValues(arr);
     }
 }

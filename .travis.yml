@@ -3,10 +3,10 @@ node_js:
   - "node"
 install:
   - cd ../../
-  - git clone --branch=$TRAVIS_BRANCH https://github.com/iotaeco/iota-pico-core.git iotaeco/iota-pico-core
-  - cd iotaeco/iota-pico-core
+  - git clone --branch=$TRAVIS_BRANCH https://github.com/iota-pico/core.git https://github.com/iota-pico/core
+  - cd https://github.com/iota-pico/core
   - npm link
-  - cd ../iota-pico-pal-browser
+  - cd ../pal-browser
   - npm link @iota-pico/core
   - npm install
 script:

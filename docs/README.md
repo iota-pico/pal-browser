@@ -1,6 +1,4 @@
 
-
-
 #  @iota-pico/pal-browser
 
 ## Index
@@ -12,6 +10,9 @@
 * [PlatformCrypto](classes/platformcrypto.md)
 * [RngService](classes/rngservice.md)
 
+### Interfaces
 
+* [IRngSource](interfaces/irngsource.md)
 
 ---
+

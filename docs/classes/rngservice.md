@@ -1,11 +1,12 @@
 [@iota-pico/pal-browser](../README.md) > [RngService](../classes/rngservice.md)
 
-
-
 # Class: RngService
 
-
 Implementation of random number generation service.
+
+## Hierarchy
+
+**RngService**
 
 ## Implements
 
@@ -17,58 +18,43 @@ Implementation of random number generation service.
 
 * [constructor](rngservice.md#constructor)
 
-
 ### Methods
 
 * [generate](rngservice.md#generate)
 
-
-
 ---
+
 ## Constructors
+
 <a id="constructor"></a>
 
+### ⊕ **new RngService**(randomSource?: *[IRngSource](../interfaces/irngsource.md)*): [RngService](rngservice.md)
 
-### ⊕ **new RngService**(randomSource?: *`RandomSource`*): [RngService](rngservice.md)
-
-
-*Defined in [services/rngService.ts:8](https://github.com/iotaeco/iota-pico-pal-browser/blob/8fc2a0e/src/services/rngService.ts#L8)*
-
-
+*Defined in [services/rngService.ts:9](https://github.com/iota-pico/pal-browser/blob/c77245a/src/services/rngService.ts#L9)*
 
 Create a new instance of RngService.
-
 
 **Parameters:**
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| randomSource | `RandomSource`   |  - |
-
-
-
-
+| randomSource | [IRngSource](../interfaces/irngsource.md)   |  - |
 
 **Returns:** [RngService](rngservice.md)
 
 ---
 
-
 ## Methods
+
 <a id="generate"></a>
 
 ###  generate
 
-► **generate**(length: *`number`*): `Uint8Array`
+▸ **generate**(length: *`number`*): `Uint8Array`
 
-
-
-*Defined in [services/rngService.ts:22](https://github.com/iotaeco/iota-pico-pal-browser/blob/8fc2a0e/src/services/rngService.ts#L22)*
-
-
+*Defined in [services/rngService.ts:23](https://github.com/iota-pico/pal-browser/blob/c77245a/src/services/rngService.ts#L23)*
 
 Generate an array of random numbers.
-
 
 **Parameters:**
 
@@ -76,18 +62,8 @@ Generate an array of random numbers.
 | ------ | ------ | ------ |
 | length | `number`   |  The number of numbers to generate. |
 
-
-
-
-
 **Returns:** `Uint8Array`
 Array of random number generators.
 
-
-
-
-
-
 ___
-
 
