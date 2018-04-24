@@ -4,7 +4,7 @@ node_js:
 install:
   - cd ../../
   - git clone --branch=$TRAVIS_BRANCH https://github.com/iota-pico/core.git core
-  - cd https://github.com/iota-pico/core
+  - cd core
   - npm link
   - cd ../pal-browser
   - npm link @iota-pico/core
