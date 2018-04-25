@@ -24,7 +24,7 @@ Platform abstraction layer for Browser.
 
 ▸ **initialize**(): `Promise`.<`void`>
 
-*Defined in [pal.ts:20](https://github.com/iota-pico/pal-browser/blob/c77245a/src/pal.ts#L20)*
+*Defined in [pal.ts:20](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/pal.ts#L20)*
 
 Perform any initialization for the PAL.
 

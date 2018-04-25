@@ -30,7 +30,7 @@ Implementation of random number generation service.
 
 ### ⊕ **new RngService**(randomSource?: *[IRngSource](../interfaces/irngsource.md)*): [RngService](rngservice.md)
 
-*Defined in [services/rngService.ts:9](https://github.com/iota-pico/pal-browser/blob/c77245a/src/services/rngService.ts#L9)*
+*Defined in [services/rngService.ts:9](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/services/rngService.ts#L9)*
 
 Create a new instance of RngService.
 
@@ -52,7 +52,7 @@ Create a new instance of RngService.
 
 ▸ **generate**(length: *`number`*): `Uint8Array`
 
-*Defined in [services/rngService.ts:23](https://github.com/iota-pico/pal-browser/blob/c77245a/src/services/rngService.ts#L23)*
+*Defined in [services/rngService.ts:23](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/services/rngService.ts#L23)*
 
 Generate an array of random numbers.
 

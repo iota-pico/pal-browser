@@ -33,7 +33,7 @@ Implementation of a platform crypto for use in NodeJS.
 
 ### ⊕ **new PlatformCrypto**(publicKey: *`string`*, privateKey?: *`string`*): [PlatformCrypto](platformcrypto.md)
 
-*Defined in [crypto/platformCrypto.ts:14](https://github.com/iota-pico/pal-browser/blob/c77245a/src/crypto/platformCrypto.ts#L14)*
+*Defined in [crypto/platformCrypto.ts:14](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L14)*
 
 Create a new instance of PlatformCrypto.
 
@@ -56,7 +56,7 @@ Create a new instance of PlatformCrypto.
 
 ▸ **decrypt**(data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:48](https://github.com/iota-pico/pal-browser/blob/c77245a/src/crypto/platformCrypto.ts#L48)*
+*Defined in [crypto/platformCrypto.ts:48](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L48)*
 
 Decrypt the given data.
 
@@ -77,7 +77,7 @@ ___
 
 ▸ **encrypt**(data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:31](https://github.com/iota-pico/pal-browser/blob/c77245a/src/crypto/platformCrypto.ts#L31)*
+*Defined in [crypto/platformCrypto.ts:31](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L31)*
 
 Encrypt the given data.
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **sign**(data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:65](https://github.com/iota-pico/pal-browser/blob/c77245a/src/crypto/platformCrypto.ts#L65)*
+*Defined in [crypto/platformCrypto.ts:65](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L65)*
 
 Sign the given data.
 
@@ -119,7 +119,7 @@ ___
 
 ▸ **verify**(data: *`string`*, signature: *`string`*): `boolean`
 
-*Defined in [crypto/platformCrypto.ts:83](https://github.com/iota-pico/pal-browser/blob/c77245a/src/crypto/platformCrypto.ts#L83)*
+*Defined in [crypto/platformCrypto.ts:83](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L83)*
 
 Verify the given data.
 

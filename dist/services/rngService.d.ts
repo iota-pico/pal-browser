@@ -1,5 +1,5 @@
 import { IRngService } from "@iota-pico/core/dist/interfaces/IRngService";
-import { IRngSource } from "./IRngSource";
+import { IRngSource } from "../interfaces/IRngSource";
 /**
  * Implementation of random number generation service.
  */
