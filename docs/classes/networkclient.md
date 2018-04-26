@@ -20,6 +20,7 @@ Implementation of a node client for use in the browser.
 
 ### Methods
 
+* [doRequest](networkclient.md#dorequest)
 * [get](networkclient.md#get)
 * [getJson](networkclient.md#getjson)
 * [post](networkclient.md#post)
@@ -33,7 +34,7 @@ Implementation of a node client for use in the browser.
 
 ### ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*, logger?: *`ILogger`*, timeoutMs?: *`number`*): [NetworkClient](networkclient.md)
 
-*Defined in [network/networkClient.ts:19](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/network/networkClient.ts#L19)*
+*Defined in [network/networkClient.ts:19](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/network/networkClient.ts#L19)*
 
 Create an instance of NetworkClient.
 
@@ -51,13 +52,37 @@ Create an instance of NetworkClient.
 
 ## Methods
 
+<a id="dorequest"></a>
+
+###  doRequest
+
+▸ **doRequest**(method: *`string`*, data: *`string`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`.<`string`>
+
+*Defined in [network/networkClient.ts:132](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/network/networkClient.ts#L132)*
+
+Perform a request asynchronously.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| method | `string`   |  The method to send the data with. |
+| data | `string`   |  The data to send. |
+| additionalPath | `string`   |  An additional path append to the endpoint path. |
+| additionalHeaders | `object`   |  Extra headers to send with the request. |
+
+**Returns:** `Promise`.<`string`>
+Promise which resolves to the object returned or rejects with error.
+
+___
+
 <a id="get"></a>
 
 ###  get
 
 ▸ **get**(additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`.<`string`>
 
-*Defined in [network/networkClient.ts:47](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/network/networkClient.ts#L47)*
+*Defined in [network/networkClient.ts:47](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/network/networkClient.ts#L47)*
 
 Get data asynchronously.
 
@@ -79,7 +104,7 @@ ___
 
 ▸ **getJson**U(additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`.<`U`>
 
-*Defined in [network/networkClient.ts:75](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/network/networkClient.ts#L75)*
+*Defined in [network/networkClient.ts:75](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/network/networkClient.ts#L75)*
 
 Get data as JSON asynchronously.
 
@@ -107,7 +132,7 @@ ___
 
 ▸ **post**(data: *`string`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`.<`string`>
 
-*Defined in [network/networkClient.ts:61](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/network/networkClient.ts#L61)*
+*Defined in [network/networkClient.ts:61](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/network/networkClient.ts#L61)*
 
 Post data asynchronously.
 
@@ -130,7 +155,7 @@ ___
 
 ▸ **postJson**T,U(data: *`T`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`.<`U`>
 
-*Defined in [network/networkClient.ts:102](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/network/networkClient.ts#L102)*
+*Defined in [network/networkClient.ts:102](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/network/networkClient.ts#L102)*
 
 Post data as JSON asynchronously.
 

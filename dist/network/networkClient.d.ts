@@ -23,8 +23,8 @@ export declare class NetworkClient implements INetworkClient {
     }): Promise<string>;
     /**
      * Post data asynchronously.
-     * @param additionalPath An additional path append to the endpoint path.
      * @param data The data to send.
+     * @param additionalPath An additional path append to the endpoint path.
      * @param additionalHeaders Extra headers to send with the request.
      * @returns Promise which resolves to the object returned or rejects with error.
      */
@@ -53,4 +53,15 @@ export declare class NetworkClient implements INetworkClient {
     postJson<T, U>(data: T, additionalPath?: string, additionalHeaders?: {
         [header: string]: string;
     }): Promise<U>;
+    /**
+     * Perform a request asynchronously.
+     * @param method The method to send the data with.
+     * @param data The data to send.
+     * @param additionalPath An additional path append to the endpoint path.
+     * @param additionalHeaders Extra headers to send with the request.
+     * @returns Promise which resolves to the object returned or rejects with error.
+     */
+    doRequest(method: string, data: string, additionalPath?: string, additionalHeaders?: {
+        [header: string]: string;
+    }): Promise<string>;
 }

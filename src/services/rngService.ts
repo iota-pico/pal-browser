@@ -10,6 +10,7 @@ export class RngService implements IRngService {
 
     /**
      * Create a new instance of RngService.
+     * @param randomSource The source for the random generator.
      */
     constructor(randomSource?: IRngSource) {
         this._randomSource = randomSource || window.crypto;

@@ -14,37 +14,14 @@ Implementation of a platform crypto for use in NodeJS.
 
 ## Index
 
-### Constructors
-
-* [constructor](platformcrypto.md#constructor)
-
 ### Methods
 
 * [decrypt](platformcrypto.md#decrypt)
 * [encrypt](platformcrypto.md#encrypt)
+* [hash](platformcrypto.md#hash)
+* [hmac](platformcrypto.md#hmac)
 * [sign](platformcrypto.md#sign)
 * [verify](platformcrypto.md#verify)
-
----
-
-## Constructors
-
-<a id="constructor"></a>
-
-### ⊕ **new PlatformCrypto**(publicKey: *`string`*, privateKey?: *`string`*): [PlatformCrypto](platformcrypto.md)
-
-*Defined in [crypto/platformCrypto.ts:14](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L14)*
-
-Create a new instance of PlatformCrypto.
-
-**Parameters:**
-
-| Param | Type | Description |
-| ------ | ------ | ------ |
-| publicKey | `string`   |  The key to use for decoding data. |
-| privateKey | `string`   |  The key to use for encoding data. |
-
-**Returns:** [PlatformCrypto](platformcrypto.md)
 
 ---
 
@@ -54,9 +31,9 @@ Create a new instance of PlatformCrypto.
 
 ###  decrypt
 
-▸ **decrypt**(data: *`string`*): `string`
+▸ **decrypt**(publicKey: *`string`*, data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:48](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L48)*
+*Defined in [crypto/platformCrypto.ts:35](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/crypto/platformCrypto.ts#L35)*
 
 Decrypt the given data.
 
@@ -64,6 +41,7 @@ Decrypt the given data.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
+| publicKey | `string`   |  The key to use for decrypting data. |
 | data | `string`   |  The data to decrypt. |
 
 **Returns:** `string`
@@ -75,9 +53,9 @@ ___
 
 ###  encrypt
 
-▸ **encrypt**(data: *`string`*): `string`
+▸ **encrypt**(privateKey: *`string`*, data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:31](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L31)*
+*Defined in [crypto/platformCrypto.ts:17](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/crypto/platformCrypto.ts#L17)*
 
 Encrypt the given data.
 
@@ -85,6 +63,7 @@ Encrypt the given data.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
+| privateKey | `string`   |  The key to use for encrypting data. |
 | data | `string`   |  The data to encrypt. |
 
 **Returns:** `string`
@@ -92,13 +71,62 @@ The encrypted data.
 
 ___
 
+<a id="hash"></a>
+
+###  hash
+
+▸ **hash**(algo: *`string`*, data: *`any`*, dataType?: *"utf8"⎮"ascii"⎮"latin1"*, encoding?: *"latin1"⎮"hex"⎮"base64"*): `any`
+
+*Defined in [crypto/platformCrypto.ts:95](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/crypto/platformCrypto.ts#L95)*
+
+Hash the data.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| algo | `string`   |  The algorithm to use. |
+| data | `any`   |  The data to hash. |
+| dataType | "utf8"⎮"ascii"⎮"latin1"   |  The type of the input data utf8, ascii, latin1. |
+| encoding | "latin1"⎮"hex"⎮"base64"   |  The encoding to return the data latin1, hex, base64. |
+
+**Returns:** `any`
+The hash of the data.
+
+___
+
+<a id="hmac"></a>
+
+###  hmac
+
+▸ **hmac**(algo: *`string`*, key: *`any`*, data: *`any`*, dataType?: *"utf8"⎮"ascii"⎮"latin1"*, encoding?: *"latin1"⎮"hex"⎮"base64"*): `any`
+
+*Defined in [crypto/platformCrypto.ts:120](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/crypto/platformCrypto.ts#L120)*
+
+HMAC the data.
+
+**Parameters:**
+
+| Param | Type | Description |
+| ------ | ------ | ------ |
+| algo | `string`   |  The algorithm to use. |
+| key | `any`   |  The key to hash the data with. |
+| data | `any`   |  The data to hash. |
+| dataType | "utf8"⎮"ascii"⎮"latin1"   |  The type of the input data utf8, ascii, latin1. |
+| encoding | "latin1"⎮"hex"⎮"base64"   |  The encoding to return the data latin1, hex, base64. |
+
+**Returns:** `any`
+The hash of the data.
+
+___
+
 <a id="sign"></a>
 
 ###  sign
 
-▸ **sign**(data: *`string`*): `string`
+▸ **sign**(privateKey: *`string`*, data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:65](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L65)*
+*Defined in [crypto/platformCrypto.ts:53](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/crypto/platformCrypto.ts#L53)*
 
 Sign the given data.
 
@@ -106,6 +134,7 @@ Sign the given data.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
+| privateKey | `string`   |  The key to use for signing data. |
 | data | `string`   |  The data to sign. |
 
 **Returns:** `string`
@@ -117,9 +146,9 @@ ___
 
 ###  verify
 
-▸ **verify**(data: *`string`*, signature: *`string`*): `boolean`
+▸ **verify**(publicKey: *`string`*, data: *`string`*, signature: *`string`*): `boolean`
 
-*Defined in [crypto/platformCrypto.ts:83](https://github.com/iota-pico/pal-browser/blob/f6aff0a/src/crypto/platformCrypto.ts#L83)*
+*Defined in [crypto/platformCrypto.ts:72](https://github.com/iota-pico/pal-browser/blob/cd4708c/src/crypto/platformCrypto.ts#L72)*
 
 Verify the given data.
 
@@ -127,6 +156,7 @@ Verify the given data.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
+| publicKey | `string`   |  The key to use for verifying data. |
 | data | `string`   |  The data to verify. |
 | signature | `string`   |  The signature to verify againt the data. |
 

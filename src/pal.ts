@@ -16,13 +16,14 @@ export class PAL {
 
     /**
      * Perform any initialization for the PAL.
+     * @returns Promise.
      */
     public static async initialize(): Promise<void> {
         if (!PAL._isInitialized) {
             PAL._isInitialized = true;
             NetworkClientFactory.instance().register("default", (networkEndpoint: INetworkEndPoint, logger: ILogger, timeoutMs: number) => new NetworkClient(networkEndpoint, logger, timeoutMs));
             RngServiceFactory.instance().register("default", () => new RngService());
-            PlatformCryptoFactory.instance().register("default", (publicKey, privateKey) => new PlatformCrypto(publicKey, privateKey));
+            PlatformCryptoFactory.instance().register("default", () => new PlatformCrypto());
         }
 
         return Promise.resolve();
