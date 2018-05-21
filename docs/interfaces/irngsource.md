@@ -22,38 +22,17 @@ Default tye for rng srouce.
 
 ###  getRandomValues
 
-▸ **getRandomValues**(array: *`Int8Array` |`Int16Array` |`Int32Array` |`Uint8Array` |`Uint16Array` |`Uint32Array` |`Uint8ClampedArray` |`Float32Array` |`Float64Array` |`DataView` |`null`*): `Int8Array` |`Int16Array` |`Int32Array` |`Uint8Array` |`Uint16Array` |`Uint32Array` |`Uint8ClampedArray` |`Float32Array` |`Float64Array` |`DataView` |`null`
+▸ **getRandomValues**(array: * `Int8Array` &#124; `Int16Array` &#124; `Int32Array` &#124; `Uint8Array` &#124; `Uint16Array` &#124; `Uint32Array` &#124; `Uint8ClampedArray` &#124; `Float32Array` &#124; `Float64Array` &#124; `DataView` &#124; `null`*):  `Int8Array` &#124; `Int16Array` &#124; `Int32Array` &#124; `Uint8Array` &#124; `Uint16Array` &#124; `Uint32Array` &#124; `Uint8ClampedArray` &#124; `Float32Array` &#124; `Float64Array` &#124; `DataView` &#124; `null`
 
-*Defined in [interfaces/IRngSource.ts:6](https://github.com/iota-pico/pal-browser/blob/5336c49/src/interfaces/IRngSource.ts#L6)*
+*Defined in [interfaces/IRngSource.ts:6](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/interfaces/IRngSource.ts#L6)*
 
 **Parameters:**
 
 | Param | Type |
 | ------ | ------ |
-| array | `Int8Array` |
-`Int16Array` |
-`Int32Array` |
-`Uint8Array` |
-`Uint16Array` |
-`Uint32Array` |
-`Uint8ClampedArray` |
-`Float32Array` |
-`Float64Array` |
-`DataView` |
-`null`
- | 
+| array |  `Int8Array` &#124; `Int16Array` &#124; `Int32Array` &#124; `Uint8Array` &#124; `Uint16Array` &#124; `Uint32Array` &#124; `Uint8ClampedArray` &#124; `Float32Array` &#124; `Float64Array` &#124; `DataView` &#124; `null`|
 
-**Returns:** `Int8Array` |
-`Int16Array` |
-`Int32Array` |
-`Uint8Array` |
-`Uint16Array` |
-`Uint32Array` |
-`Uint8ClampedArray` |
-`Float32Array` |
-`Float64Array` |
-`DataView` |
-`null`
+**Returns:**  `Int8Array` &#124; `Int16Array` &#124; `Int32Array` &#124; `Uint8Array` &#124; `Uint16Array` &#124; `Uint32Array` &#124; `Uint8ClampedArray` &#124; `Float32Array` &#124; `Float64Array` &#124; `DataView` &#124; `null`
 
 ___
 

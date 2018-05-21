@@ -33,7 +33,7 @@ Implementation of a platform crypto for use in NodeJS.
 
 ▸ **decrypt**(publicKey: *`string`*, data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:35](https://github.com/iota-pico/pal-browser/blob/5336c49/src/crypto/platformCrypto.ts#L35)*
+*Defined in [crypto/platformCrypto.ts:35](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/crypto/platformCrypto.ts#L35)*
 
 Decrypt the given data.
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **encrypt**(privateKey: *`string`*, data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:17](https://github.com/iota-pico/pal-browser/blob/5336c49/src/crypto/platformCrypto.ts#L17)*
+*Defined in [crypto/platformCrypto.ts:17](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/crypto/platformCrypto.ts#L17)*
 
 Encrypt the given data.
 
@@ -73,9 +73,9 @@ ___
 
 ###  hash
 
-▸ **hash**(algo: *`string`*, data: *`any`*, dataType?: *"utf8" |"ascii" |"latin1"*, encoding?: *"latin1" |"hex" |"base64"*): `any`
+▸ **hash**(algo: *`string`*, data: *`any`*, dataType?: * "utf8" &#124; "ascii" &#124; "latin1"*, encoding?: * "latin1" &#124; "hex" &#124; "base64"*): `any`
 
-*Defined in [crypto/platformCrypto.ts:95](https://github.com/iota-pico/pal-browser/blob/5336c49/src/crypto/platformCrypto.ts#L95)*
+*Defined in [crypto/platformCrypto.ts:95](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/crypto/platformCrypto.ts#L95)*
 
 Hash the data.
 
@@ -85,14 +85,8 @@ Hash the data.
 | ------ | ------ | ------ |
 | algo | `string` |  The algorithm to use. |
 | data | `any` |  The data to hash. |
-| `Optional` dataType | "utf8" |
-"ascii" |
-"latin1"
- |  The type of the input data utf8, ascii, latin1. |
-| `Optional` encoding | "latin1" |
-"hex" |
-"base64"
- |  The encoding to return the data latin1, hex, base64. |
+| `Optional` dataType |  "utf8" &#124; "ascii" &#124; "latin1"|  The type of the input data utf8, ascii, latin1. |
+| `Optional` encoding |  "latin1" &#124; "hex" &#124; "base64"|  The encoding to return the data latin1, hex, base64. |
 
 **Returns:** `any`
 The hash of the data.
@@ -102,9 +96,9 @@ ___
 
 ###  hmac
 
-▸ **hmac**(algo: *`string`*, key: *`any`*, data: *`any`*, dataType?: *"utf8" |"ascii" |"latin1"*, encoding?: *"latin1" |"hex" |"base64"*): `any`
+▸ **hmac**(algo: *`string`*, key: *`any`*, data: *`any`*, dataType?: * "utf8" &#124; "ascii" &#124; "latin1"*, encoding?: * "latin1" &#124; "hex" &#124; "base64"*): `any`
 
-*Defined in [crypto/platformCrypto.ts:120](https://github.com/iota-pico/pal-browser/blob/5336c49/src/crypto/platformCrypto.ts#L120)*
+*Defined in [crypto/platformCrypto.ts:120](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/crypto/platformCrypto.ts#L120)*
 
 HMAC the data.
 
@@ -115,14 +109,8 @@ HMAC the data.
 | algo | `string` |  The algorithm to use. |
 | key | `any` |  The key to hash the data with. |
 | data | `any` |  The data to hash. |
-| `Optional` dataType | "utf8" |
-"ascii" |
-"latin1"
- |  The type of the input data utf8, ascii, latin1. |
-| `Optional` encoding | "latin1" |
-"hex" |
-"base64"
- |  The encoding to return the data latin1, hex, base64. |
+| `Optional` dataType |  "utf8" &#124; "ascii" &#124; "latin1"|  The type of the input data utf8, ascii, latin1. |
+| `Optional` encoding |  "latin1" &#124; "hex" &#124; "base64"|  The encoding to return the data latin1, hex, base64. |
 
 **Returns:** `any`
 The hash of the data.
@@ -134,7 +122,7 @@ ___
 
 ▸ **sign**(privateKey: *`string`*, data: *`string`*): `string`
 
-*Defined in [crypto/platformCrypto.ts:53](https://github.com/iota-pico/pal-browser/blob/5336c49/src/crypto/platformCrypto.ts#L53)*
+*Defined in [crypto/platformCrypto.ts:53](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/crypto/platformCrypto.ts#L53)*
 
 Sign the given data.
 
@@ -155,7 +143,7 @@ ___
 
 ▸ **verify**(publicKey: *`string`*, data: *`string`*, signature: *`string`*): `boolean`
 
-*Defined in [crypto/platformCrypto.ts:72](https://github.com/iota-pico/pal-browser/blob/5336c49/src/crypto/platformCrypto.ts#L72)*
+*Defined in [crypto/platformCrypto.ts:72](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/crypto/platformCrypto.ts#L72)*
 
 Verify the given data.
 
