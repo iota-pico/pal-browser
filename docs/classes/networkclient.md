@@ -36,7 +36,7 @@ Implementation of a node client for use in the browser.
 
 ⊕ **new NetworkClient**(networkEndPoint: *`INetworkEndPoint`*, logger?: *`ILogger`*, timeoutMs?: *`number`*): [NetworkClient](networkclient.md)
 
-*Defined in [network/networkClient.ts:19](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/network/networkClient.ts#L19)*
+*Defined in [network/networkClient.ts:19](https://github.com/iota-pico/pal-browser/blob/a722e3c/src/network/networkClient.ts#L19)*
 
 Create an instance of NetworkClient.
 
@@ -60,7 +60,7 @@ ___
 
 ▸ **doRequest**(method: *`string`*, data: *`string`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`string`>
 
-*Defined in [network/networkClient.ts:132](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/network/networkClient.ts#L132)*
+*Defined in [network/networkClient.ts:132](https://github.com/iota-pico/pal-browser/blob/a722e3c/src/network/networkClient.ts#L132)*
 
 Perform a request asynchronously.
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **get**(additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`string`>
 
-*Defined in [network/networkClient.ts:47](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/network/networkClient.ts#L47)*
+*Defined in [network/networkClient.ts:47](https://github.com/iota-pico/pal-browser/blob/a722e3c/src/network/networkClient.ts#L47)*
 
 Get data asynchronously.
 
@@ -104,7 +104,7 @@ ___
 
 ▸ **getJson**U(additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`U`>
 
-*Defined in [network/networkClient.ts:75](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/network/networkClient.ts#L75)*
+*Defined in [network/networkClient.ts:75](https://github.com/iota-pico/pal-browser/blob/a722e3c/src/network/networkClient.ts#L75)*
 
 Get data as JSON asynchronously.
 
@@ -131,7 +131,7 @@ ___
 
 ▸ **post**(data: *`string`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`string`>
 
-*Defined in [network/networkClient.ts:61](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/network/networkClient.ts#L61)*
+*Defined in [network/networkClient.ts:61](https://github.com/iota-pico/pal-browser/blob/a722e3c/src/network/networkClient.ts#L61)*
 
 Post data asynchronously.
 
@@ -153,7 +153,7 @@ ___
 
 ▸ **postJson**T,U(data: *`T`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`U`>
 
-*Defined in [network/networkClient.ts:102](https://github.com/iota-pico/pal-browser/blob/3b3dea6/src/network/networkClient.ts#L102)*
+*Defined in [network/networkClient.ts:102](https://github.com/iota-pico/pal-browser/blob/a722e3c/src/network/networkClient.ts#L102)*
 
 Post data as JSON asynchronously.
 
