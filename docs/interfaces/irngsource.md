@@ -24,7 +24,7 @@ Default tye for rng srouce.
 
 ▸ **getRandomValues**(array: * `Int8Array` &#124; `Int16Array` &#124; `Int32Array` &#124; `Uint8Array` &#124; `Uint16Array` &#124; `Uint32Array` &#124; `Uint8ClampedArray` &#124; `Float32Array` &#124; `Float64Array` &#124; `DataView` &#124; `null`*):  `Int8Array` &#124; `Int16Array` &#124; `Int32Array` &#124; `Uint8Array` &#124; `Uint16Array` &#124; `Uint32Array` &#124; `Uint8ClampedArray` &#124; `Float32Array` &#124; `Float64Array` &#124; `DataView` &#124; `null`
 
-*Defined in [interfaces/IRngSource.ts:6](https://github.com/iota-pico/pal-browser/blob/6995a6a/src/interfaces/IRngSource.ts#L6)*
+*Defined in [interfaces/IRngSource.ts:6](https://github.com/iota-pico/pal-browser/tree/master/src/interfaces/IRngSource.ts#L6*
 
 **Parameters:**
 
