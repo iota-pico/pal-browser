@@ -102,7 +102,7 @@ ___
 
 ###  getJson
 
-▸ **getJson**U(additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`U`>
+▸ **getJson**<`U`>(additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`U`>
 
 *Defined in [network/networkClient.ts:75](https://github.com/iota-pico/pal-browser/tree/master/src/network/networkClient.ts#L75*
 
@@ -151,7 +151,7 @@ ___
 
 ###  postJson
 
-▸ **postJson**T,U(data: *`T`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`U`>
+▸ **postJson**<`T`,`U`>(data: *`T`*, additionalPath?: *`string`*, additionalHeaders?: *`object`*): `Promise`<`U`>
 
 *Defined in [network/networkClient.ts:102](https://github.com/iota-pico/pal-browser/tree/master/src/network/networkClient.ts#L102*
 
