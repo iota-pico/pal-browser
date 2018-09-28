@@ -5,6 +5,7 @@ import { StringHelper } from "@iota-pico/core/dist/helpers/stringHelper";
 import { ILogger } from "@iota-pico/core/dist/interfaces/ILogger";
 import { INetworkClient } from "@iota-pico/core/dist/interfaces/INetworkClient";
 import { INetworkEndPoint } from "@iota-pico/core/dist/interfaces/INetworkEndPoint";
+import { NetworkMethod } from "@iota-pico/core/dist/interfaces/networkMethod";
 import { NullLogger } from "@iota-pico/core/dist/loggers/nullLogger";
 
 /**
@@ -40,13 +41,14 @@ export class NetworkClient implements INetworkClient {
 
     /**
      * Get data asynchronously.
+     * @param data The data to send.
      * @param additionalPath An additional path append to the endpoint path.
      * @param additionalHeaders Extra headers to send with the request.
      * @returns Promise which resolves to the object returned or rejects with error.
      */
-    public async get(additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<string> {
+    public async get(data: { [key: string]: any }, additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<string> {
         this._logger.info("===> NetworkClient::GET Send");
-        const resp = await this.doRequest("GET", undefined, additionalPath, additionalHeaders);
+        const resp = await this.doRequest("GET", this.objectToParameters(data), additionalPath, additionalHeaders);
         this._logger.info("<=== NetworkClient::GET Received", resp);
         return resp;
     }
@@ -66,54 +68,37 @@ export class NetworkClient implements INetworkClient {
     }
 
     /**
-     * Get data as JSON asynchronously.
-     * @typeparam U The generic type for the returned object.
-     * @param additionalPath An additional path append to the endpoint path.
-     * @param additionalHeaders Extra headers to send with the request.
-     * @returns Promise which resolves to the object returned or rejects with error.
-     */
-    public async getJson<U>(additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<U> {
-        this._logger.info("===> NetworkClient::GET Send");
-        return this.doRequest("GET", undefined, additionalPath, additionalHeaders)
-            .then((responseData) => {
-                try {
-                    const response = JSON.parse(responseData);
-                    this._logger.info("===> NetworkClient::GET Received", response);
-                    return <U>response;
-                } catch (err) {
-                    this._logger.info("===> NetworkClient::GET Parse Failed", responseData);
-                    throw(new NetworkError("Failed GET request, unable to parse response", {
-                        endPoint: this._networkEndPoint.getUri(),
-                        response: responseData
-                    }));
-                }
-            });
-    }
-
-    /**
-     * Post data as JSON asynchronously.
+     * Request data as JSON asynchronously.
      * @typeparam T The generic type for the object to send.
      * @typeparam U The generic type for the returned object.
-     * @param data The data to send.
+     * @param data The data to send as the JSON body.
+     * @param method The method to send with the request.
      * @param additionalPath An additional path append to the endpoint path.
      * @param additionalHeaders Extra headers to send with the request.
      * @returns Promise which resolves to the object returned or rejects with error.
      */
-    public async postJson<T, U>(data: T, additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<U> {
-        this._logger.info("===> NetworkClient::POST Send");
+    public async json<T, U>(data?: T, method?: NetworkMethod, additionalPath?: string, additionalHeaders?: { [header: string]: string }): Promise<U> {
+        this._logger.info(`===> NetworkClient::${method} Send`);
 
         const headers = additionalHeaders || {};
-        headers["Content-Type"] = "application/json";
 
-        return this.doRequest("POST", JSON.stringify(data), additionalPath, headers)
+        let localData;
+        if (method === "GET" || method === "DELETE") {
+            localData = this.objectToParameters(data);
+        } else {
+            headers["Content-Type"] = "application/json";
+            localData = JSON.stringify(data);
+        }
+
+        return this.doRequest(method, localData, additionalPath, headers)
             .then((responseData) => {
                 try {
                     const response = JSON.parse(responseData);
-                    this._logger.info("===> NetworkClient::POST Received", response);
+                    this._logger.info(`===> NetworkClient::${method} Received`, response);
                     return <U>response;
                 } catch (err) {
-                    this._logger.info("===> NetworkClient::GET Parse Failed", responseData);
-                    throw(new NetworkError("Failed POST request, unable to parse response", {
+                    this._logger.info(`===> NetworkClient::${method} Parse Failed`, responseData);
+                    throw (new NetworkError(`Failed ${method} request, unable to parse response`, {
                         endPoint: this._networkEndPoint.getUri(),
                         response: responseData
                     }));
@@ -138,6 +123,10 @@ export class NetworkClient implements INetworkClient {
             if (!StringHelper.isEmpty(additionalPath)) {
                 const stripped = `/${additionalPath.replace(/^\/*/, "")}`;
                 uri += stripped;
+            }
+
+            if ((method === "GET" || method === "DELETE") && !ObjectHelper.isEmpty(data)) {
+                uri += data;
             }
 
             const req = new XMLHttpRequest();
@@ -187,7 +176,34 @@ export class NetworkClient implements INetworkClient {
 
             this._logger.info("===> NetworkClient::Send", { data });
 
-            req.send(data);
+            if (method === "GET" || method === "DELETE") {
+                req.send();
+            } else {
+                req.send(data);
+            }
         });
+    }
+
+    /* @internal */
+    private objectToParameters<T>(data: T): string {
+        let localUri = "";
+
+        if (data) {
+            const keys = Object.keys(data);
+
+            if (keys.length > 0) {
+                const parms: string[] = [];
+
+                for (let i = 0; i < keys.length; i++) {
+                    const key = <keyof T>keys[i];
+                    const value = data[key] ? data[key].toString() : "";
+                    parms.push(`${encodeURIComponent(keys[i])}=${encodeURIComponent(value)}`);
+                }
+
+                localUri += `?${parms.join("&")}`;
+            }
+        }
+
+        return localUri;
     }
 }

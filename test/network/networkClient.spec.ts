@@ -8,7 +8,7 @@ import { NetworkClient } from "../../src/network/networkClient";
 declare var global: any;
 
 class FakeXMLHttpRequest {
-    public headers: { [header: string]: string } ;
+    public headers: { [header: string]: string };
     public readyState: number;
     public status: number;
     public sentData: string;
@@ -39,22 +39,25 @@ class FakeXMLHttpRequest {
 
         this.sentData = data;
 
-        if (this.timeout > 0)  {
-            setTimeout(() => {
-                this.ontimeout();
-            },         1);
+        if (this.timeout > 0) {
+            setTimeout(
+                () => {
+                    this.ontimeout();
+                },
+                1);
         }
         if (this.responseText === null) {
             this.onerror(new Error("err!"));
         } else {
-            const interval = setInterval(() => {
-                                            this.readyState++;
-                                            if (this.readyState === 1) {
-                                                clearInterval(interval);
-                                            }
-                                            this.onload();
-                                        },
-                                         1);
+            const interval = setInterval(
+                () => {
+                    this.readyState++;
+                    if (this.readyState === 1) {
+                        clearInterval(interval);
+                    }
+                    this.onload();
+                },
+                1);
         }
     }
 }
@@ -95,7 +98,7 @@ describe("NetworkClient", () => {
         it("can get data with headers", async () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "foo";
-            const ret = await obj.get(undefined, { bar: "123" });
+            const ret = await obj.get(undefined, undefined, { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
             chai.expect(xhr.headers.bar).to.be.equal("123");
         });
@@ -104,7 +107,7 @@ describe("NetworkClient", () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = null;
             try {
-                await obj.get(undefined, { bar: "123" });
+                await obj.get(undefined, undefined, { bar: "123" });
                 chai.assert("should not be here");
             } catch (err) {
                 chai.expect(err.message).to.contain("Failed GET request");
@@ -143,10 +146,30 @@ describe("NetworkClient", () => {
         it("can get with additional path", async () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265, "//pop//"));
             xhr.responseText = "foo";
-            const ret = await obj.get("////path", { bar: "123" });
+            const ret = await obj.get(undefined, "////path", { bar: "123" });
             chai.expect(ret).to.be.equal("foo");
             chai.expect(xhr.uri).to.be.equal("http://localhost:14265/pop/path");
             chai.expect(xhr.headers.bar).to.be.equal("123");
+        });
+
+        it("can get with empty parameters", async () => {
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265, "//pop//"));
+            xhr.responseText = "foo";
+            const ret = await obj.get({});
+            chai.expect(ret).to.be.equal("foo");
+            chai.expect(xhr.uri).to.be.equal("http://localhost:14265/pop");
+        });
+
+        it("can get with parameters", async () => {
+            const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265, "//pop//"));
+            xhr.responseText = "foo";
+            const ret = await obj.get({
+                "a param": 2,
+                "b param": true,
+                "c param": null
+            });
+            chai.expect(ret).to.be.equal("foo");
+            chai.expect(xhr.uri).to.be.equal("http://localhost:14265/pop?a%20param=2&b%20param=true&c%20param=");
         });
     });
 
@@ -207,11 +230,11 @@ describe("NetworkClient", () => {
         });
     });
 
-    describe("getJson", () => {
+    describe("json", () => {
         it("can get data", async () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "{ \"foo\": 123 }";
-            const ret = await obj.getJson();
+            const ret = await obj.json(undefined, "GET");
             chai.expect(ret).to.be.deep.equal({ foo: 123 });
         });
 
@@ -219,7 +242,7 @@ describe("NetworkClient", () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "!";
             try {
-                await obj.getJson();
+                await obj.json(undefined, "GET");
                 chai.assert("should not be here");
             } catch (err) {
                 chai.expect(err.message).to.contain("Failed GET request, unable to parse response");
@@ -227,11 +250,11 @@ describe("NetworkClient", () => {
         });
     });
 
-    describe("postJson", () => {
+    describe("post", () => {
         it("can post data", async () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "{ \"foo\": 123 }";
-            const ret = await obj.postJson({ bar: true });
+            const ret = await obj.json({ bar: true }, "POST");
             chai.expect(ret).to.be.deep.equal({ foo: 123 });
             chai.expect(xhr.headers["Content-Type"]).to.be.equal("application/json");
         });
@@ -240,7 +263,7 @@ describe("NetworkClient", () => {
             const obj = new NetworkClient(new NetworkEndPoint("http", "localhost", 14265));
             xhr.responseText = "!";
             try {
-                await obj.postJson({ bar: true });
+                await obj.json({ bar: true }, "POST");
                 chai.assert("should not be here");
             } catch (err) {
                 chai.expect(err.message).to.contain("Failed POST request, unable to parse response");

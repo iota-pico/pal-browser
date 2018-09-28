@@ -21,7 +21,7 @@ export class PlatformCrypto implements IPlatformCrypto {
         if (StringHelper.isEmpty(data)) {
             throw new PlatformError("The data must be a non empty string");
         }
-        const buffer = new Buffer(data, "ascii");
+        const buffer = Buffer.from(data, "ascii");
         const encrypted = crypto.privateEncrypt(privateKey, buffer);
         return encrypted.toString("hex");
     }
@@ -39,7 +39,7 @@ export class PlatformCrypto implements IPlatformCrypto {
         if (StringHelper.isEmpty(data)) {
             throw new PlatformError("The data must be a non empty string");
         }
-        const buffer = new Buffer(data, "hex");
+        const buffer = Buffer.from(data, "hex");
         const decrypted = crypto.publicDecrypt(publicKey, buffer);
         return decrypted.toString("ascii");
     }
