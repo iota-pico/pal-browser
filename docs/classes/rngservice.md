@@ -38,7 +38,7 @@ Create a new instance of RngService.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | `Optional` randomSource | [IRngSource](../interfaces/irngsource.md) |  The source for the random generator. |
 
@@ -60,7 +60,7 @@ Generate an array of random numbers.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | length | `number` |  The number of numbers to generate. |
 

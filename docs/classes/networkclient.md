@@ -41,7 +41,7 @@ Create an instance of NetworkClient.
 
 **Parameters:**
 
-| Param | Type | Default value | Description |
+| Name | Type | Default value | Description |
 | ------ | ------ | ------ | ------ |
 | networkEndPoint | `INetworkEndPoint` | - |  The endpoint to use for the client. |
 | `Optional` logger | `ILogger` | - |  Logger to send communication info to. |
@@ -65,7 +65,7 @@ Perform a request asynchronously.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | method | `string` |  The method to send the data with. |
 | data | `string` |  The data to send. |
@@ -88,7 +88,7 @@ Get data asynchronously.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | data | `object` |  The data to send. |
 | `Optional` additionalPath | `string` |  An additional path append to the endpoint path. |
@@ -120,7 +120,7 @@ The generic type for the returned object.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | `Optional` data | `T` |  The data to send as the JSON body. |
 | `Optional` method | `NetworkMethod` |  The method to send with the request. |
@@ -143,7 +143,7 @@ Post data asynchronously.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | data | `string` |  The data to send. |
 | `Optional` additionalPath | `string` |  An additional path append to the endpoint path. |
