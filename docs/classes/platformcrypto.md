@@ -73,7 +73,7 @@ ___
 
 ###  hash
 
-▸ **hash**(algo: *`string`*, data: *`any`*, dataType?: *"utf8" | "ascii" | "latin1"*, encoding?: *"latin1" | "hex" | "base64"*): `any`
+▸ **hash**(algo: *`string`*, data: *`any`*, dataType?: *"utf8" \| "ascii" \| "latin1"*, encoding?: *"latin1" \| "hex" \| "base64"*): `any`
 
 *Defined in [crypto/platformCrypto.ts:95](https://github.com/iota-pico/pal-browser/tree/master/src/crypto/platformCrypto.ts#L95*
 
@@ -85,8 +85,8 @@ Hash the data.
 | ------ | ------ | ------ |
 | algo | `string` |  The algorithm to use. |
 | data | `any` |  The data to hash. |
-| `Optional` dataType | "utf8" | "ascii" | "latin1" |  The type of the input data utf8, ascii, latin1. |
-| `Optional` encoding | "latin1" | "hex" | "base64" |  The encoding to return the data latin1, hex, base64. |
+| `Optional` dataType | "utf8" \| "ascii" \| "latin1" |  The type of the input data utf8, ascii, latin1. |
+| `Optional` encoding | "latin1" \| "hex" \| "base64" |  The encoding to return the data latin1, hex, base64. |
 
 **Returns:** `any`
 The hash of the data.
@@ -96,7 +96,7 @@ ___
 
 ###  hmac
 
-▸ **hmac**(algo: *`string`*, key: *`any`*, data: *`any`*, dataType?: *"utf8" | "ascii" | "latin1"*, encoding?: *"latin1" | "hex" | "base64"*): `any`
+▸ **hmac**(algo: *`string`*, key: *`any`*, data: *`any`*, dataType?: *"utf8" \| "ascii" \| "latin1"*, encoding?: *"latin1" \| "hex" \| "base64"*): `any`
 
 *Defined in [crypto/platformCrypto.ts:120](https://github.com/iota-pico/pal-browser/tree/master/src/crypto/platformCrypto.ts#L120*
 
@@ -109,8 +109,8 @@ HMAC the data.
 | algo | `string` |  The algorithm to use. |
 | key | `any` |  The key to hash the data with. |
 | data | `any` |  The data to hash. |
-| `Optional` dataType | "utf8" | "ascii" | "latin1" |  The type of the input data utf8, ascii, latin1. |
-| `Optional` encoding | "latin1" | "hex" | "base64" |  The encoding to return the data latin1, hex, base64. |
+| `Optional` dataType | "utf8" \| "ascii" \| "latin1" |  The type of the input data utf8, ascii, latin1. |
+| `Optional` encoding | "latin1" \| "hex" \| "base64" |  The encoding to return the data latin1, hex, base64. |
 
 **Returns:** `any`
 The hash of the data.
